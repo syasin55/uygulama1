@@ -72,15 +72,8 @@
 			}
 			
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			;
+			$yazilacak=$_POST["no"]."-".$_POST["secim"]."-".$kredi."\n";
+			fputs($dosya,$yazilacak);
 		}
 	}
 ?>
