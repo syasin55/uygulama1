@@ -1,10 +1,6 @@
-<form action="ogrencibilgi.php" method="POST">
+<form action="ogrencibilgisi.php" method="POST">
 <table border="1" align="center">
-<th colspan="2">OGRENCI BILGI</th>
-<tr>
-	<td>Ogr. No:</td>
-	<td><input type="text" name="no"></td>
-</tr>
+<th colspan="2">Ogrenci Bilgisi</th>
 <tr>
 	<td>Adi:</td>
 	<td><input type="text" name="adi"></td>
@@ -14,14 +10,23 @@
 	<td><input type="text" name="soyadi"></td>
 </tr>
 <tr>
-	<td colspan="2" align="center">
-		<input type="submit" name="kaydet" value="Kaydet">
+	<td>Ogr No:</td>
+	<td><input type="text" name="no"></td>
+</tr>
+<tr>
+	<td>Cinsiyet:</td>
+	<td>
+			Bay<input type="radio" name="cins" value="bay">
+			Bayan<input type="radio" name="cins" value="bayan">
 	</td>
 </tr>
 <tr>
-	<td colspan="2" align="center">
-		<a href="index.php">anasayfaya don</a>
+	<td colspan="2" align="center"><input type="submit" name="kaydet" value="Kaydet">
+	<input type="reset" name="temizle" value="Temizle">
 	</td>
+</tr>
+<tr>
+	<td align="center" colspan="2"><a href='index.php'>anamenuye don</a></td>
 </tr>
 </table>
 </form>
@@ -30,21 +35,18 @@
 	{
 		fopen("bilgi.txt","w");
 	}
-	if($_POST["kaydet"])
+	if ($_POST["kaydet"])
 	{
-		if($_POST["no"]=="" || $_POST["adi"]=="" || $_POST["soyadi"]=="")
+		if($_POST["adi"]=="" || $_POST["soyadi"]=="" || $_POST["no"]=="")
 		{
-			echo"********EKSIK BILGI GIRIS*********";
+			echo"Eksik bilgileri doldurunuz";
 		}
 		else
 		{
-			
-			
-			
-			
-			
-			
-			
+			$dosya=fopen("bilgi.txt","a");
+			$yazilacak=$_POST["adi"]."-".$_POST["soyadi"]."-".$_POST["no"]."-".$_POST["cins"]."\n";
+			fputs($dosya,$yazilacak);
+			echo"********Sisteme Kaydiniz Yapilmistir*********";
 		}
 	}
 ?>
